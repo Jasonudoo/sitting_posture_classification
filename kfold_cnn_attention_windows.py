@@ -70,7 +70,7 @@ for name in testName:
                 temp2 = [temp[-1]]+temp+[temp[0]]
                 for l in range(len(temp2)):
                     temp2[l] = [temp2[l]]
-                if name in j:
+                if '/'+name in j:
                     test_features[-1].append(temp)
                     test_features2[-1].append(temp2)
                     test_labels[-1].append(folderName.index(i))

@@ -61,7 +61,7 @@ for name in testName:
 				temp = list(map(int,line))
 				# if ignore_back:
 				# 	temp = temp[0:7]+temp[14:21]
-				if name in j:
+				if '/'+name in j:
 					test_features[-1].append(temp)
 					test_labels[-1].append(folderName.index(i))
 				else:
