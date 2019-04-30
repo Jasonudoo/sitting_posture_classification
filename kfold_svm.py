@@ -18,13 +18,13 @@ feature_num = 14
 ignore_back = False
 data_type = 'butt' #databack0628 is butt_back
 data_folder = 'data0609/'
-model_folder = 'kfold_model_svm_polynomial/'
-result_file = 'result_svm_polynomial.txt'
+model_folder = 'kfold_model_svm_radialBasis/'
+result_file = 'result_svm_radialBasis.txt'
 training = True
 folderName = ['1_proper','3_lying','4_left','5_right','6_leftcross','7_rightcross','8_leftcross1','9_rightcross1']
 # testName = ['andy_','chiang_','chris_','cliff_','eric_','eric2_','ethan_','ginger_','howard_','jessica_','lulu_','morris2_','nemo_','nemo2_','ruby_','ryan_','ryan2_','sara_','scott_','weiting_','wen_','yao2_','yuwen_']
 testName = glob.glob(data_folder+'/'+folderName[0]+'/*.txt')
-fresult = open(result_file,'w')
+fresult = open(data_folder+result_file,'w')
 fresult.close()
 for i in range(len(testName)):
 	string = folderName[0].replace('1_','')
@@ -102,7 +102,7 @@ for val in range(len(testName)):
 		intervel = classIndexInTrain[1]-classIndexInTrain[0]
 		for i in range(class_num):
 			for j in range(i+1,class_num):
-				model[i][j] = svm_train([1]*intervel+[-1]*intervel, X_train[classIndexInTrain[i]:classIndexInTrain[i+1]]+X_train[classIndexInTrain[j]:classIndexInTrain[j+1]], '-c 4 -t 1')
+				model[i][j] = svm_train([1]*intervel+[-1]*intervel, X_train[classIndexInTrain[i]:classIndexInTrain[i+1]]+X_train[classIndexInTrain[j]:classIndexInTrain[j+1]], '-c 4 -t 2')
 				svm_save_model(data_folder+model_folder+testName[val]+'/'+str(i)+str(j)+'.model', model[i][j])
 	
 	

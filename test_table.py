@@ -1,7 +1,8 @@
 from PIL import Image, ImageFont, ImageDraw, ImageEnhance
 import numpy as np
 class_name = ["proper", "lying", "left", "right", "leftcross", "rightcross", "leftcross1", "rightcross1"]
-#table = [[1,0.9,0.8,0.7,0.6,0.5,0.4,0.3],[0,1,0,0,0,0,0,0],[0,0,1,0,0,0,0,0],[0,0,0,1,0,0,0,0],[0,0,0,0,1,0,0,0],[0,0,0,0,0,1,0,0],[0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,1]]
+# test data
+# table = [[1,0.9,0.8,0.7,0.6,0.5,0.4,0.3],[0,1,0,0,0,0,0,0],[0,0,1,0,0,0,0,0],[0,0,0,1,0,0,0,0],[0,0,0,0,1,0,0,0],[0,0,0,0,0,1,0,0],[0,0,0,0,0,0,1,0],[0,0,0,0,0,0,0,1]]
 table = np.array(all_error_matrix)
 
 font_ = ImageFont.truetype(font="arial.ttf",size=15)
