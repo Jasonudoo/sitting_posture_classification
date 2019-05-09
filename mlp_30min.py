@@ -23,14 +23,16 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import sys
 if len(sys.argv)==1:
-	sys.argv.append(1)
+	step = 1
+else:
+	step = sys.argv[1]
 batch_size = 128
 nb_classes = 8
 feature_num = 14
 nb_epoch = 100
 dataset = 'data0723'
-
-if int(sys.argv[1]) <= 1:
+folderName = ['proper','lying','left','right','leftcross','rightcross','leftcross1','rightcross1']
+if int(step) <= 1:
 	# the data, shuffled and split between train and test sets
 	[X_train, y_train, X_test, y_test] = pickle.load(open(dataset+'/ginger_30min.cpickle','rb'))
 	X_train = np.array(X_train)
@@ -72,7 +74,7 @@ if int(sys.argv[1]) <= 1:
 	model.save(dataset+'/model.h5')
 
 
-if int(sys.argv[1]) <= 2:
+if int(step) <= 2:
 	model = load_model(dataset+'/model.h5')
 	file_list = glob.glob(dataset+"/*.cpickle")
 	pose_accuracy = [0]*nb_classes
@@ -105,12 +107,12 @@ if int(sys.argv[1]) <= 2:
 			results_class.append(list(results_probability[j]).index(max(results_probability[j])))
 		# import pdb;pdb.set_trace()
 		plt.cla()
-		plt.plot(range(len(results_class)), results_class,'ro',markersize=1)
-		# plt.show()
-		# plt.savefig(i.replace('cpickle','png'))
-
-		# plt.cla()
-		plt.plot(range(len(y_test)), list(np.array(y_test)+0.2),'bo',markersize=1)
+		plt.axis([0, len(results_class), -1, nb_classes])
+		plt.rcParams['ytick.labelsize'] = 'small'
+		plt.yticks(np.arange(-1,nb_classes), ([' ']+folderName+[' ']))
+		plt.plot(range(len(results_class)), results_class,'ro',markersize=3, label="predict result")
+		plt.plot(range(len(y_test)), list(np.array(y_test)+0.2),'bo',markersize=3, label="target")
+		plt.legend(loc='upper right')
 		plt.show()
 		plt.savefig(i.replace('.cpickle','.true.png'))
 		
