@@ -42,9 +42,9 @@ for i in folderName:
 			print(j+' data no enough only '+ str(count) +' \n')
 
 dataset = 'data0723'
-bias = 1000
-frequency = 6
-skip = 120
+bias = 100
+frequency = 6.6 # per data one second (be used to transfer second to data location)
+skip = 1 #
 file_list = glob.glob(dataset+"/*feature.txt")
 for i in file_list:
 	test_features = []
