@@ -41,11 +41,11 @@ for i in folderName:
 		if count < maxcount:
 			print(j+' data no enough only '+ str(count) +' \n')
 
-dataset = 'data0723'
-bias = 100
-frequency = 6.6 # per data one second (be used to transfer second to data location)
-skip = 1 #
-file_list = glob.glob(dataset+"/*feature.txt")
+dataset = 'data190512_30min'
+bias = 0
+frequency = 6.666 # data per second (be used to transfer second to data location)
+sampling = 6 # Sampling 
+file_list = glob.glob(dataset+"/data/*feature.txt")
 for i in file_list:
 	test_features = []
 	test_labels = []	
@@ -82,8 +82,8 @@ for i in file_list:
 				break
 	f.close()
 	
-	test_features = test_features[0:len(test_features):skip]
-	test_labels = test_labels[0:len(test_labels):skip]
+	test_features = test_features[0:len(test_features):sampling]
+	test_labels = test_labels[0:len(test_labels):sampling]
 	if len(test_features)!=len(test_labels):
 		import pdb;pdb.set_trace()
 
